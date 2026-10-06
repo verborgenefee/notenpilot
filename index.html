@@ -1,0 +1,812 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Job-Zeiten">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>Job-Zeiten</title>
+  <style>
+    :root {
+      --bg: #0b1120;
+      --card: #111827;
+      --card-soft: #172033;
+      --text: #eaf2ff;
+      --muted: #9aa9be;
+      --line: rgba(148, 163, 184, 0.18);
+      --blue: #38bdf8;
+      --blue-dark: #2563eb;
+      --green: #22c55e;
+      --red: #ef4444;
+      --yellow: #f59e0b;
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      background: var(--bg);
+      color-scheme: dark;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(56, 189, 248, 0.18), transparent 26rem),
+        linear-gradient(180deg, #0f172a 0%, #0b1120 48%, #080d18 100%);
+      padding: env(safe-area-inset-top) 14px calc(24px + env(safe-area-inset-bottom));
+    }
+
+    .app {
+      width: min(100%, 620px);
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 22px 4px 14px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 32px;
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .subline {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(23, 32, 51, 0.96), rgba(17, 24, 39, 0.98));
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 20px;
+      letter-spacing: 0;
+    }
+
+    form {
+      display: grid;
+      gap: 13px;
+    }
+
+    label {
+      display: grid;
+      gap: 7px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    input {
+      width: 100%;
+      min-height: 56px;
+      border-radius: 15px;
+      border: 1px solid var(--line);
+      background: #0f172a;
+      color: var(--text);
+      padding: 0 14px;
+      font-size: 19px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: rgba(56, 189, 248, 0.85);
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.14);
+    }
+
+    input[type="date"],
+    input[type="time"],
+    input[type="number"] {
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    button {
+      width: 100%;
+      min-height: 60px;
+      border: 0;
+      border-radius: 16px;
+      color: white;
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    button:active {
+      transform: translateY(1px);
+      filter: brightness(0.96);
+    }
+
+    .save {
+      margin-top: 2px;
+      background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+      box-shadow: 0 14px 28px rgba(37, 99, 235, 0.32);
+    }
+
+    .green {
+      background: linear-gradient(135deg, #16a34a, var(--green));
+    }
+
+    .secondary {
+      background: #243145;
+      border: 1px solid var(--line);
+      color: var(--text);
+    }
+
+    .danger {
+      background: linear-gradient(135deg, #dc2626, var(--red));
+    }
+
+    .yellow {
+      background: linear-gradient(135deg, #d97706, var(--yellow));
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .stat {
+      min-width: 0;
+      background: rgba(15, 23, 42, 0.72);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .label {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .value {
+      font-size: 27px;
+      line-height: 1.1;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      overflow-wrap: anywhere;
+    }
+
+    .alarm-status {
+      background: rgba(15, 23, 42, 0.72);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      margin-bottom: 13px;
+    }
+
+    .alarm-time {
+      font-size: 28px;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      margin-bottom: 5px;
+    }
+
+    .alarm-text {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .alarm-active {
+      border-color: rgba(34, 197, 94, 0.45);
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.08);
+    }
+
+    .ringing {
+      animation: pulse 0.9s ease-in-out infinite;
+      border-color: rgba(245, 158, 11, 0.8);
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.18);
+      }
+      50% {
+        box-shadow: 0 0 0 8px rgba(245, 158, 11, 0.05);
+      }
+    }
+
+    .entries {
+      display: grid;
+      gap: 10px;
+    }
+
+    .entry {
+      display: grid;
+      grid-template-columns: 1fr 48px;
+      gap: 12px;
+      align-items: center;
+      background: rgba(15, 23, 42, 0.72);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px;
+    }
+
+    .entry-title {
+      font-size: 17px;
+      font-weight: 850;
+      margin-bottom: 5px;
+    }
+
+    .entry-info {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .entry-tip {
+      color: var(--green);
+      font-weight: 850;
+      margin-top: 5px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .delete {
+      width: 48px;
+      height: 48px;
+      min-height: 48px;
+      border-radius: 14px;
+      font-size: 25px;
+      line-height: 1;
+      background: rgba(239, 68, 68, 0.18);
+      color: #fecaca;
+      border: 1px solid rgba(239, 68, 68, 0.32);
+    }
+
+    .empty {
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.55);
+      border: 1px dashed var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .note {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 430px) {
+      body {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      h1 {
+        font-size: 29px;
+      }
+
+      .two,
+      .actions {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header>
+      <h1>Meine Job-Zeiten</h1>
+      <p class="subline" id="monthName">Dieser Monat</p>
+    </header>
+
+    <section class="stack">
+      <div class="card">
+        <h2>Eintragen</h2>
+        <form id="workForm">
+          <label>
+            Datum
+            <input id="dateInput" type="date" required>
+          </label>
+
+          <div class="two">
+            <label>
+              Von
+              <input id="startInput" type="time" required>
+            </label>
+            <label>
+              Bis
+              <input id="endInput" type="time" required>
+            </label>
+          </div>
+
+          <label>
+            Trinkgeld
+            <input id="tipInput" type="number" inputmode="decimal" min="0" step="0.01" placeholder="z.B. 8,50">
+          </label>
+
+          <button class="save" type="submit">Speichern</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>Wecker</h2>
+        <div class="alarm-status" id="alarmStatus">
+          <div class="alarm-time" id="alarmDisplay">Kein Wecker</div>
+          <div class="alarm-text" id="alarmText">Stelle eine Uhrzeit ein, solange die App geöffnet ist.</div>
+        </div>
+        <form id="alarmForm">
+          <label>
+            Uhrzeit
+            <input id="alarmTimeInput" type="time" required>
+          </label>
+          <label>
+            Erinnerung
+            <input id="alarmMessageInput" type="text" maxlength="40" placeholder="z.B. Zur Arbeit los">
+          </label>
+          <button class="green" type="submit">Wecker stellen</button>
+          <div class="actions">
+            <button class="yellow" id="testAlarmButton" type="button">Test-Ton</button>
+            <button class="secondary" id="clearAlarmButton" type="button">Wecker aus</button>
+          </div>
+        </form>
+        <p class="note">Der Wecker klingelt, wenn diese Seite im Browser geöffnet bleibt. Beim ersten Ton muss eventuell einmal auf „Test-Ton“ getippt werden.</p>
+      </div>
+
+      <div class="card">
+        <h2>Zusammenfassung</h2>
+        <div class="stats">
+          <div class="stat">
+            <div class="label">Gearbeitet</div>
+            <div class="value" id="hoursTotal">0,0 h</div>
+          </div>
+          <div class="stat">
+            <div class="label">Trinkgeld</div>
+            <div class="value" id="tipTotal">0,00 €</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Einträge</h2>
+        <div class="entries" id="entries"></div>
+      </div>
+
+      <div class="card">
+        <h2>Daten</h2>
+        <div class="actions">
+          <button class="secondary" id="exportButton" type="button">CSV Export</button>
+          <button class="danger" id="resetButton" type="button">Alles löschen</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const ENTRY_STORAGE_KEY = "simple_student_work_entries_v2";
+    const ALARM_STORAGE_KEY = "simple_student_work_alarm_v1";
+
+    let entries = loadJson(ENTRY_STORAGE_KEY, []);
+    let alarm = loadJson(ALARM_STORAGE_KEY, null);
+    let audioContext = null;
+    let ringTimer = null;
+    let alarmAlreadyRangFor = "";
+
+    const form = document.getElementById("workForm");
+    const dateInput = document.getElementById("dateInput");
+    const startInput = document.getElementById("startInput");
+    const endInput = document.getElementById("endInput");
+    const tipInput = document.getElementById("tipInput");
+    const entriesEl = document.getElementById("entries");
+    const hoursTotalEl = document.getElementById("hoursTotal");
+    const tipTotalEl = document.getElementById("tipTotal");
+    const monthNameEl = document.getElementById("monthName");
+    const alarmForm = document.getElementById("alarmForm");
+    const alarmTimeInput = document.getElementById("alarmTimeInput");
+    const alarmMessageInput = document.getElementById("alarmMessageInput");
+    const alarmStatus = document.getElementById("alarmStatus");
+    const alarmDisplay = document.getElementById("alarmDisplay");
+    const alarmText = document.getElementById("alarmText");
+    const clearAlarmButton = document.getElementById("clearAlarmButton");
+    const testAlarmButton = document.getElementById("testAlarmButton");
+
+    const monthFormatter = new Intl.DateTimeFormat("de-DE", {
+      month: "long",
+      year: "numeric"
+    });
+
+    const dateFormatter = new Intl.DateTimeFormat("de-DE", {
+      weekday: "short",
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric"
+    });
+
+    dateInput.value = toDateValue(new Date());
+    monthNameEl.textContent = monthFormatter.format(new Date());
+
+    if (alarm) {
+      alarmTimeInput.value = alarm.time || "";
+      alarmMessageInput.value = alarm.message || "";
+    }
+
+    form.addEventListener("submit", event => {
+      event.preventDefault();
+
+      const date = dateInput.value;
+      const start = startInput.value;
+      const end = endInput.value;
+      const tip = parseMoney(tipInput.value);
+
+      const startDate = makeDate(date, start);
+      let endDate = makeDate(date, end);
+
+      if (!date || !start || !end || Number.isNaN(startDate.getTime()) || Number.isNaN(endDate.getTime())) {
+        alert("Bitte Datum, Von und Bis ausfüllen.");
+        return;
+      }
+
+      if (endDate <= startDate) {
+        endDate = new Date(endDate.getTime() + 24 * 60 * 60 * 1000);
+      }
+
+      const minutes = Math.round((endDate - startDate) / 60000);
+
+      if (minutes <= 0) {
+        alert("Die Arbeitszeit muss größer als 0 Minuten sein.");
+        return;
+      }
+
+      entries.push({
+        id: createId(),
+        date,
+        startISO: startDate.toISOString(),
+        endISO: endDate.toISOString(),
+        minutes,
+        tip
+      });
+
+      saveEntries();
+      form.reset();
+      dateInput.value = toDateValue(new Date());
+      render();
+    });
+
+    alarmForm.addEventListener("submit", event => {
+      event.preventDefault();
+      unlockSound();
+
+      alarm = {
+        time: alarmTimeInput.value,
+        message: alarmMessageInput.value.trim() || "Zeit loszugehen",
+        active: true
+      };
+
+      alarmAlreadyRangFor = "";
+      localStorage.setItem(ALARM_STORAGE_KEY, JSON.stringify(alarm));
+      renderAlarm();
+    });
+
+    clearAlarmButton.addEventListener("click", () => {
+      stopRinging();
+      alarm = null;
+      alarmAlreadyRangFor = "";
+      alarmTimeInput.value = "";
+      alarmMessageInput.value = "";
+      localStorage.removeItem(ALARM_STORAGE_KEY);
+      renderAlarm();
+    });
+
+    testAlarmButton.addEventListener("click", () => {
+      unlockSound();
+      ringOnce();
+      vibrate();
+    });
+
+    document.getElementById("exportButton").addEventListener("click", exportCsv);
+
+    document.getElementById("resetButton").addEventListener("click", () => {
+      if (!confirm("Wirklich alle Einträge löschen?")) return;
+      entries = [];
+      saveEntries();
+      render();
+    });
+
+    function render() {
+      renderStats();
+      renderEntries();
+      renderAlarm();
+    }
+
+    function renderStats() {
+      const now = new Date();
+      const month = now.getMonth();
+      const year = now.getFullYear();
+
+      const currentMonthEntries = entries.filter(entry => {
+        const date = new Date(entry.startISO);
+        return date.getMonth() === month && date.getFullYear() === year;
+      });
+
+      const totalMinutes = currentMonthEntries.reduce((sum, entry) => sum + entry.minutes, 0);
+      const totalTip = currentMonthEntries.reduce((sum, entry) => sum + entry.tip, 0);
+
+      hoursTotalEl.textContent = formatHours(totalMinutes);
+      tipTotalEl.textContent = formatMoney(totalTip);
+    }
+
+    function renderEntries() {
+      const sorted = [...entries].sort((a, b) => new Date(b.startISO) - new Date(a.startISO));
+
+      if (sorted.length === 0) {
+        entriesEl.innerHTML = '<div class="empty">Noch nichts eingetragen.</div>';
+        return;
+      }
+
+      entriesEl.innerHTML = "";
+
+      sorted.forEach(entry => {
+        const start = new Date(entry.startISO);
+        const end = new Date(entry.endISO);
+
+        const item = document.createElement("div");
+        item.className = "entry";
+
+        const content = document.createElement("div");
+
+        const title = document.createElement("div");
+        title.className = "entry-title";
+        title.textContent = dateFormatter.format(start);
+
+        const info = document.createElement("div");
+        info.className = "entry-info";
+        info.textContent = formatTime(start) + " - " + formatTime(end) + " · " + formatHours(entry.minutes);
+
+        const tip = document.createElement("div");
+        tip.className = "entry-tip";
+        tip.textContent = "Trinkgeld: " + formatMoney(entry.tip);
+
+        const deleteButton = document.createElement("button");
+        deleteButton.className = "delete";
+        deleteButton.type = "button";
+        deleteButton.setAttribute("aria-label", "Eintrag löschen");
+        deleteButton.textContent = "×";
+        deleteButton.addEventListener("click", () => deleteEntry(entry.id));
+
+        content.appendChild(title);
+        content.appendChild(info);
+        content.appendChild(tip);
+        item.appendChild(content);
+        item.appendChild(deleteButton);
+        entriesEl.appendChild(item);
+      });
+    }
+
+    function renderAlarm() {
+      alarmStatus.classList.remove("alarm-active", "ringing");
+
+      if (!alarm || !alarm.active) {
+        alarmDisplay.textContent = "Kein Wecker";
+        alarmText.textContent = "Stelle eine Uhrzeit ein, solange die App geöffnet ist.";
+        return;
+      }
+
+      alarmStatus.classList.add("alarm-active");
+      alarmDisplay.textContent = alarm.time + " Uhr";
+      alarmText.textContent = alarm.message;
+    }
+
+    function checkAlarm() {
+      if (!alarm || !alarm.active || !alarm.time) return;
+
+      const now = new Date();
+      const currentTime = String(now.getHours()).padStart(2, "0") + ":" + String(now.getMinutes()).padStart(2, "0");
+      const currentKey = toDateValue(now) + " " + currentTime;
+
+      if (currentTime === alarm.time && alarmAlreadyRangFor !== currentKey) {
+        alarmAlreadyRangFor = currentKey;
+        startRinging();
+      }
+    }
+
+    function startRinging() {
+      alarmStatus.classList.add("ringing");
+      alarmDisplay.textContent = "Wecker!";
+      alarmText.textContent = alarm && alarm.message ? alarm.message : "Zeit loszugehen";
+      ringOnce();
+      vibrate();
+
+      if (ringTimer) clearInterval(ringTimer);
+      ringTimer = setInterval(() => {
+        ringOnce();
+        vibrate();
+      }, 1600);
+
+      setTimeout(() => {
+        alert(alarm && alarm.message ? alarm.message : "Wecker!");
+        stopRinging();
+        renderAlarm();
+      }, 250);
+    }
+
+    function stopRinging() {
+      if (ringTimer) {
+        clearInterval(ringTimer);
+        ringTimer = null;
+      }
+      alarmStatus.classList.remove("ringing");
+    }
+
+    function unlockSound() {
+      if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioContext.state === "suspended") {
+        audioContext.resume();
+      }
+    }
+
+    function ringOnce() {
+      try {
+        unlockSound();
+        const oscillator = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+        oscillator.type = "sine";
+        oscillator.frequency.setValueAtTime(880, audioContext.currentTime);
+        oscillator.frequency.setValueAtTime(660, audioContext.currentTime + 0.18);
+        gain.gain.setValueAtTime(0.001, audioContext.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.35, audioContext.currentTime + 0.03);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.55);
+        oscillator.connect(gain);
+        gain.connect(audioContext.destination);
+        oscillator.start();
+        oscillator.stop(audioContext.currentTime + 0.58);
+      } catch {
+        return;
+      }
+    }
+
+    function vibrate() {
+      if ("vibrate" in navigator) {
+        navigator.vibrate([250, 120, 250]);
+      }
+    }
+
+    function deleteEntry(id) {
+      if (!confirm("Diesen Eintrag löschen?")) return;
+      entries = entries.filter(entry => entry.id !== id);
+      saveEntries();
+      render();
+    }
+
+    function exportCsv() {
+      if (entries.length === 0) {
+        alert("Keine Einträge zum Exportieren vorhanden.");
+        return;
+      }
+
+      const header = ["Datum", "Von", "Bis", "Stunden", "Trinkgeld"];
+      const rows = [...entries]
+        .sort((a, b) => new Date(a.startISO) - new Date(b.startISO))
+        .map(entry => {
+          const start = new Date(entry.startISO);
+          const end = new Date(entry.endISO);
+          return [
+            toDateValue(start),
+            formatTime(start),
+            formatTime(end),
+            (entry.minutes / 60).toFixed(2).replace(".", ","),
+            entry.tip.toFixed(2).replace(".", ",")
+          ];
+        });
+
+      const csv = [header, ...rows]
+        .map(row => row.map(csvCell).join(";"))
+        .join("\r\n");
+
+      const blob = new Blob(["\ufeff" + csv], { type: "text/csv;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "job-zeiten_" + toDateValue(new Date()) + ".csv";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function loadJson(key, fallback) {
+      try {
+        const saved = localStorage.getItem(key);
+        return saved ? JSON.parse(saved) : fallback;
+      } catch {
+        return fallback;
+      }
+    }
+
+    function saveEntries() {
+      localStorage.setItem(ENTRY_STORAGE_KEY, JSON.stringify(entries));
+    }
+
+    function makeDate(date, time) {
+      return new Date(date + "T" + time + ":00");
+    }
+
+    function toDateValue(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      return year + "-" + month + "-" + day;
+    }
+
+    function formatTime(date) {
+      return date.toLocaleTimeString("de-DE", {
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+    }
+
+    function formatHours(minutes) {
+      const value = minutes / 60;
+      return value.toLocaleString("de-DE", {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1
+      }) + " h";
+    }
+
+    function formatMoney(value) {
+      return value.toLocaleString("de-DE", {
+        style: "currency",
+        currency: "EUR"
+      });
+    }
+
+    function parseMoney(value) {
+      return Math.max(0, Number(String(value || "0").replace(",", ".")) || 0);
+    }
+
+    function csvCell(value) {
+      const text = String(value ?? "");
+      return '"' + text.replace(/"/g, '""') + '"';
+    }
+
+    function createId() {
+      return Date.now().toString(36) + Math.random().toString(36).slice(2, 9);
+    }
+
+    setInterval(checkAlarm, 1000);
+    render();
+  </script>
+</body>
+</html>
