@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
@@ -960,20 +960,44 @@
       transform: translateX(-50%) translateY(-100px);
       background: #0f172a;
       color: white;
-      padding: 12px 20px;
+      padding: 10px 18px;
       border-radius: 30px;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
       box-shadow: 0 10px 25px rgba(0,0,0,0.25);
       z-index: 1000;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      max-width: 90vw;
     }
 
     .toast.show {
       transform: translateX(-50%) translateY(0);
+    }
+
+    .toast-action-btn {
+      background: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      padding: 4px 10px;
+      border-radius: 16px;
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .toast-action-btn:hover {
+      background: rgba(255, 255, 255, 0.35);
+      transform: scale(1.05);
+    }
+
+    .toast-action-btn:active {
+      transform: scale(0.95);
     }
 
     .help-banner {
@@ -992,6 +1016,247 @@
       font-size: 20px;
       line-height: 1;
     }
+
+    /* Safety & Backup Elements */
+    .safety-reminder-banner {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(236, 72, 153, 0.12));
+      border: 1.5px solid rgba(99, 102, 241, 0.35);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-sm);
+      animation: fadeIn 0.3s ease;
+    }
+
+    .safety-reminder-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .btn-reminder-save {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 12px;
+      cursor: pointer;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.35);
+      transition: all 0.15s ease;
+    }
+
+    .btn-reminder-save:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-reminder-close {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 16px;
+      padding: 4px 6px;
+      border-radius: 50%;
+      line-height: 1;
+    }
+
+    .btn-reminder-close:hover {
+      color: var(--text-main);
+    }
+
+    .settings-section {
+      margin-bottom: 20px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .settings-section:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .settings-section-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .safety-status-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .safety-status-item {
+      background: var(--bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+    }
+
+    .safety-status-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .safety-status-val {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .backup-btn-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 480px) {
+      .backup-btn-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .backup-action-card {
+      background: var(--bg);
+      border: 1.5px solid var(--card-border);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s ease;
+      font-family: inherit;
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .backup-action-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .backup-action-card:active {
+      transform: scale(0.98);
+    }
+
+    .backup-action-card-title {
+      font-size: 13px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .backup-action-card-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .snapshot-list-container {
+      max-height: 220px;
+      overflow-y: auto;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      background: var(--bg);
+      padding: 6px;
+      margin-bottom: 10px;
+    }
+
+    .snapshot-item {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 8px 10px;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      transition: border-color 0.15s ease;
+    }
+
+    .snapshot-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .snapshot-item:hover {
+      border-color: var(--primary);
+    }
+
+    .snapshot-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .snapshot-info h5 {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .snapshot-info span {
+      font-size: 10px;
+      color: var(--text-muted);
+      display: block;
+      margin-top: 1px;
+    }
+
+    .btn-restore-snap {
+      background: var(--bg);
+      color: var(--primary);
+      border: 1.5px solid var(--primary);
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+
+    .btn-restore-snap:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .security-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--success);
+      background: var(--success-light);
+      padding: 3px 8px;
+      border-radius: 12px;
+    }
   </style>
 </head>
 <body>
@@ -999,10 +1264,11 @@
   <!-- Confetti Canvas -->
   <canvas id="confettiCanvas"></canvas>
 
-  <!-- Toast Notification -->
+  <!-- Interactive Toast Notification with Undo -->
   <div id="toast" class="toast">
     <span id="toastIcon">🎉</span>
     <span id="toastMsg">Gespeichert!</span>
+    <button id="toastActionBtn" class="toast-action-btn" style="display: none;">↩️ Rückgängig</button>
   </div>
 
   <div class="app-container">
@@ -1017,9 +1283,24 @@
       </div>
       <div class="header-actions">
         <button id="btnToggleTheme" class="btn-icon" title="Design wechseln">🌙</button>
-        <button id="btnSettings" class="btn-icon" title="Einstellungen & Backup">⚙️</button>
+        <button id="btnSettings" class="btn-icon" title="Einstellungen, Datensicherheit & Backup">⚙️</button>
       </div>
     </header>
+
+    <!-- Backup & Safety Reminder Banner (Shown if new grades added without recent backup) -->
+    <div id="backupReminderBanner" class="safety-reminder-banner" style="display: none;">
+      <div class="safety-reminder-icon">🛡️</div>
+      <div style="flex: 1;">
+        <strong id="backupReminderTitle">Sicherheits-Empfehlung</strong>
+        <div id="backupReminderText" style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">
+          Du hast neue Noten eingetragen. Erstelle jetzt ein schnelles 1-Klick Backup zur Sicherheit!
+        </div>
+      </div>
+      <div style="display: flex; gap: 6px; align-items: center;">
+        <button onclick="exportData()" class="btn-reminder-save">📥 Sichern</button>
+        <button onclick="dismissBackupReminder()" class="btn-reminder-close" title="Später erinnern">✕</button>
+      </div>
+    </div>
 
     <!-- Semester Switcher -->
     <div class="semester-bar">
@@ -1365,46 +1646,109 @@
     </div>
   </div>
 
-  <!-- MODAL: Einstellungen, Backup & Info -->
+  <!-- MODAL: Einstellungen, Datensicherheit & Backup -->
   <div id="modalSettings" class="modal-backdrop">
     <div class="modal-dialog">
       <div class="modal-header">
-        <h3 class="modal-title">⚙️ Einstellungen & Daten</h3>
+        <h3 class="modal-title">🛡️ Datensicherheit & Backup</h3>
         <button class="modal-close" onclick="closeModal('modalSettings')">✕</button>
       </div>
 
-      <div class="help-banner" style="margin-bottom: 16px;">
-        <div class="help-banner-icon">📱</div>
-        <div>
-          <strong>Auf dem Handy speichern:</strong><br>
-          Tippe im Browser auf <em>Teilen</em> oder das Drei-Punkte-Menü und wähle <strong>„Zum Home-Bildschirm“</strong>, um NotenPilot wie eine echte App zu nutzen.
+      <!-- SECTION 1: 3-FACHER DATENSCHUTZ-STATUS -->
+      <div class="settings-section">
+        <div class="settings-section-title">
+          <span>🛡️</span> Aktiver Datenschutz-Status
+        </div>
+        <div class="safety-status-grid">
+          <div class="safety-status-item">
+            <div class="safety-status-label">Triple-Speicher</div>
+            <div class="safety-status-val">
+              <span class="security-badge">🟢 Aktiv</span>
+            </div>
+            <div style="font-size: 10px; color: var(--text-muted); margin-top: 3px;">LocalStorage + IndexedDB gespiegelt</div>
+          </div>
+          <div class="safety-status-item">
+            <div class="safety-status-label">Dauerspeicher-Schutz</div>
+            <div id="statusPersistBadge" class="safety-status-val">
+              <span class="security-badge">🟢 Geschützt</span>
+            </div>
+            <div style="font-size: 10px; color: var(--text-muted); margin-top: 3px;">Keine automatische Browser-Löschung</div>
+          </div>
+          <div class="safety-status-item">
+            <div class="safety-status-label">Wiederherstellungspunkte</div>
+            <div id="statusSnapshotsCount" class="safety-status-val">⏱️ 0 Versionen</div>
+            <div style="font-size: 10px; color: var(--text-muted); margin-top: 3px;">Historie jeder Noten-Änderung</div>
+          </div>
+          <div class="safety-status-item">
+            <div class="safety-status-label">Letztes Datei-Backup</div>
+            <div id="statusLastBackup" class="safety-status-val" style="font-size: 11px;">Noch kein Backup</div>
+            <div id="statusUnsavedHint" style="font-size: 10px; color: var(--warning); margin-top: 3px;">Regelmäßig sichern empfohlen</div>
+          </div>
         </div>
       </div>
 
-      <div class="form-group">
-        <label class="form-label">Daten sichern (Backup)</label>
-        <button onclick="exportData()" class="form-control" style="cursor: pointer; font-weight: 700; text-align: center; background: var(--bg);">
-          📥 Als Backup-Datei herunterladen (.json)
-        </button>
+      <!-- SECTION 2: BACKUP & EXPORT -->
+      <div class="settings-section">
+        <div class="settings-section-title">
+          <span>💾</span> Datensicherung & Exportieren
+        </div>
+        <div class="backup-btn-grid">
+          <button onclick="exportData()" class="backup-action-card">
+            <div class="backup-action-card-title">📥 Datei (.json)</div>
+            <div class="backup-action-card-desc">Herunterladen auf dein Gerät</div>
+          </button>
+          <button onclick="copyBackupToClipboard()" class="backup-action-card">
+            <div class="backup-action-card-title">📋 Kopieren</div>
+            <div class="backup-action-card-desc">JSON in Zwischenablage</div>
+          </button>
+          <button onclick="shareBackupData()" class="backup-action-card">
+            <div class="backup-action-card-title">📲 Teilen</div>
+            <div class="backup-action-card-desc">Via WhatsApp, AirDrop, Cloud</div>
+          </button>
+          <button onclick="copyGradeReportText()" class="backup-action-card">
+            <div class="backup-action-card-title">📄 Notenblatt (Text)</div>
+            <div class="backup-action-card-desc">Schöne Übersicht für Eltern</div>
+          </button>
+        </div>
       </div>
 
-      <div class="form-group">
-        <label class="form-label">Backup wiederherstellen</label>
+      <!-- SECTION 3: WIEDERHERSTELLUNGSPUNKTE (TIME MACHINE) -->
+      <div class="settings-section">
+        <div class="settings-section-title" style="justify-content: space-between;">
+          <span><span>⏱️</span> Wiederherstellungspunkte (<span id="snapCountHeader">0</span>)</span>
+          <button onclick="createManualSnapshot()" style="background:transparent; border:none; color:var(--primary); font-size:11px; font-weight:700; cursor:pointer;">+ Jetzt sichern</button>
+        </div>
+        <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">
+          NotenPilot sichert automatisch vor jedem Löschen, Eintragen oder Importieren:
+        </div>
+        <div id="snapshotListContainer" class="snapshot-list-container">
+          <!-- Dynamically injected snapshot history -->
+        </div>
+      </div>
+
+      <!-- SECTION 4: BACKUP EINSPIELEN -->
+      <div class="settings-section">
+        <div class="settings-section-title">
+          <span>📤</span> Backup-Datei wiederherstellen
+        </div>
         <input type="file" id="importFileInput" accept=".json" style="display:none" onchange="importData(event)">
-        <button onclick="document.getElementById('importFileInput').click()" class="form-control" style="cursor: pointer; font-weight: 700; text-align: center; background: var(--bg);">
-          📤 Backup-Datei einlesen
+        <button onclick="document.getElementById('importFileInput').click()" class="form-control" style="cursor: pointer; font-weight: 700; text-align: center; background: var(--bg); border: 1.5px dashed var(--card-border);">
+          📤 Backup-Datei (.json) auswählen & einlesen
         </button>
       </div>
 
-      <div class="form-group" style="margin-top: 24px;">
-        <label class="form-label" style="color: var(--danger);">Gefahrenzone</label>
-        <button onclick="loadSampleData()" class="form-control" style="margin-bottom: 8px; cursor: pointer; color: var(--primary); font-weight: 700;">
+      <!-- SECTION 5: GEFAHRENZONE -->
+      <div class="settings-section">
+        <div class="settings-section-title" style="color: var(--danger);">
+          <span>⚠️</span> Gefahrenzone (Mit Auto-Sicherheitskopie)
+        </div>
+        <button onclick="loadSampleData()" class="form-control" style="margin-bottom: 8px; cursor: pointer; color: var(--primary); font-weight: 700; text-align: left;">
           ✨ Beispiel-Noten für alle 13 Fächer laden
         </button>
-        <button onclick="resetToDefaultSubjects()" class="form-control" style="margin-bottom: 8px; cursor: pointer; color: var(--warning); font-weight: 700;">
+        <button onclick="resetToDefaultSubjects()" class="form-control" style="margin-bottom: 8px; cursor: pointer; color: var(--warning); font-weight: 700; text-align: left;">
           🔄 Alle 13 Standard-Fächer wiederherstellen
         </button>
-        <button onclick="clearAllData()" class="form-control" style="cursor: pointer; color: var(--danger); font-weight: 700;">
+        <button onclick="clearAllData()" class="form-control" style="cursor: pointer; color: var(--danger); font-weight: 700; text-align: left;">
           🗑️ Alle Noten komplett leeren
         </button>
       </div>
@@ -1413,12 +1757,17 @@
 
   <script>
     /* ==========================================================================
-       APP STATE & STORAGE
+       APP STATE & STORAGE ARCHITECTURE (FAIL-SAFE TRIPLE-LAYER)
        ========================================================================== */
     const STORAGE_KEY = 'notenpilot_schul_data_v3';
+    const SNAPSHOTS_KEY = 'notenpilot_snapshots_v2';
+    const LAST_BACKUP_KEY = 'notenpilot_last_backup_timestamp';
     const THEME_KEY = 'notenpilot_theme_pref';
+    const DB_NAME = 'NotenPilotSafeVault_v1';
+    const DB_VERSION = 1;
+    const MAX_SNAPSHOTS = 25;
 
-    // Exact 13 subjects with clean symbols (no country flags):
+    // Exact 13 subjects with clean symbols:
     const standardSubjects = [
       { id: 'sub_d', name: 'Deutsch', shortName: 'D', emoji: '📚', color: '#ec4899', weightRatio: '50:50' },
       { id: 'sub_m', name: 'Mathe', shortName: 'M', emoji: '📐', color: '#6366f1', weightRatio: '50:50' },
@@ -1442,27 +1791,276 @@
     };
 
     let selectedSubjectForDetail = null;
+    let dbInstance = null;
+    let isPersistedStorage = false;
+    let undoBuffer = null;
+    let toastTimer = null;
+    let unsavedChangesCount = 0;
 
-    function initApp() {
+    /* ==========================================================================
+       INDEXEDDB STORAGE ENGINE (FAIL-SAFE MIRROR)
+       ========================================================================== */
+    function openDB() {
+      return new Promise((resolve) => {
+        if (dbInstance) return resolve(dbInstance);
+        if (!window.indexedDB) return resolve(null);
+
+        try {
+          const req = indexedDB.open(DB_NAME, DB_VERSION);
+          req.onupgradeneeded = (e) => {
+            const db = e.target.result;
+            if (!db.objectStoreNames.contains('app_state')) {
+              db.createObjectStore('app_state', { keyPath: 'key' });
+            }
+            if (!db.objectStoreNames.contains('snapshots')) {
+              db.createObjectStore('snapshots', { keyPath: 'id' });
+            }
+          };
+          req.onsuccess = (e) => {
+            dbInstance = e.target.result;
+            resolve(dbInstance);
+          };
+          req.onerror = () => resolve(null);
+        } catch (err) {
+          resolve(null);
+        }
+      });
+    }
+
+    async function saveToIndexedDB(data) {
+      try {
+        const db = await openDB();
+        if (!db) return;
+        const tx = db.transaction('app_state', 'readwrite');
+        tx.objectStore('app_state').put({ key: 'current_state', data: data, timestamp: Date.now() });
+      } catch (err) {
+        console.warn("IndexedDB save warning:", err);
+      }
+    }
+
+    async function loadFromIndexedDB() {
+      try {
+        const db = await openDB();
+        if (!db) return null;
+        return new Promise((resolve) => {
+          const tx = db.transaction('app_state', 'readonly');
+          const req = tx.objectStore('app_state').get('current_state');
+          req.onsuccess = () => resolve(req.result ? req.result.data : null);
+          req.onerror = () => resolve(null);
+        });
+      } catch (e) {
+        return null;
+      }
+    }
+
+    /* ==========================================================================
+       BROWSER PERSISTENT STORAGE PROTECTION
+       ========================================================================== */
+    async function initPersistentStorage() {
+      if (navigator.storage && navigator.storage.persist) {
+        try {
+          let persisted = await navigator.storage.persisted();
+          if (!persisted) {
+            persisted = await navigator.storage.persist();
+          }
+          isPersistedStorage = !!persisted;
+        } catch (e) {
+          isPersistedStorage = false;
+        }
+      }
+      updateStorageStatusUI();
+    }
+
+    /* ==========================================================================
+       ROLLING SNAPSHOTS & VERSION HISTORY (TIME MACHINE)
+       ========================================================================== */
+    function getSnapshots() {
+      try {
+        const raw = localStorage.getItem(SNAPSHOTS_KEY);
+        return raw ? JSON.parse(raw) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveSnapshots(snapshots) {
+      try {
+        localStorage.setItem(SNAPSHOTS_KEY, JSON.stringify(snapshots.slice(0, MAX_SNAPSHOTS)));
+      } catch (e) {
+        console.warn("Snapshot save warning:", e);
+      }
+    }
+
+    async function createSnapshot(reason = 'Automatischer Wiederherstellungspunkt') {
+      const gpa = calculateOverallGPA();
+      const now = new Date();
+      const timeStr = now.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' }) + ' ' +
+                      now.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + ' Uhr';
+
+      const snap = {
+        id: 'snap_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4),
+        timestamp: Date.now(),
+        formattedTime: timeStr,
+        reason: reason,
+        subjectsCount: appData.subjects.length,
+        gradesCount: appData.grades.length,
+        gpa: gpa !== null ? gpa.toFixed(2).replace('.', ',') : '--',
+        data: JSON.parse(JSON.stringify(appData))
+      };
+
+      const list = getSnapshots();
+      list.unshift(snap);
+      const trimmed = list.slice(0, MAX_SNAPSHOTS);
+      saveSnapshots(trimmed);
+
+      // Mirror to IndexedDB
+      try {
+        const db = await openDB();
+        if (db) {
+          const tx = db.transaction('snapshots', 'readwrite');
+          tx.objectStore('snapshots').put(snap);
+        }
+      } catch (err) {}
+
+      updateStorageStatusUI();
+    }
+
+    function createManualSnapshot() {
+      createSnapshot('Manuelle Sicherung');
+      showActionToast("⏱️ Neuer Wiederherstellungspunkt gesichert!", null, "💾");
+    }
+
+    function renderSnapshotsList() {
+      const container = document.getElementById('snapshotListContainer');
+      const headerCount = document.getElementById('snapCountHeader');
+      if (!container) return;
+
+      const snapshots = getSnapshots();
+      headerCount.innerText = snapshots.length;
+
+      if (snapshots.length === 0) {
+        container.innerHTML = '<div style="font-size:11px; color:var(--text-muted); text-align:center; padding:12px 0;">Noch keine Wiederherstellungspunkte vorhanden.</div>';
+        return;
+      }
+
+      container.innerHTML = '';
+      snapshots.forEach(snap => {
+        const item = document.createElement('div');
+        item.className = 'snapshot-item';
+        item.innerHTML = `
+          <div class="snapshot-info">
+            <h5>${escapeHtml(snap.reason)}</h5>
+            <span>${escapeHtml(snap.formattedTime)} • ${snap.gradesCount} Noten • Schnitt: ${snap.gpa}</span>
+          </div>
+          <button class="btn-restore-snap" onclick="restoreSnapshot('${snap.id}')" title="Diesen Stand wiederherstellen">
+            Wiederherstellen
+          </button>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    function restoreSnapshot(snapshotId) {
+      const list = getSnapshots();
+      const snap = list.find(s => s.id === snapshotId);
+      if (!snap || !snap.data) {
+        alert("Wiederherstellungspunkt nicht gefunden.");
+        return;
+      }
+
+      if (!confirm(`Möchtest du den Stand vom "${snap.formattedTime}" (${snap.reason}) wiederherstellen? Eine Sicherheitskopie deines aktuellen Stands wird davor automatisch erstellt.`)) {
+        return;
+      }
+
+      // Safety snapshot of current state
+      createSnapshot('Vor Wiederherstellung von ' + snap.formattedTime);
+
+      appData = JSON.parse(JSON.stringify(snap.data));
+      saveAllStorage('Wiederhergestellt von: ' + snap.formattedTime, false);
+      renderAll();
+      triggerConfetti();
+      closeModal('modalSettings');
+      showActionToast(`⏱️ Stand vom ${snap.formattedTime} erfolgreich wiederhergestellt!`, null, "🎉");
+    }
+
+    /* ==========================================================================
+       MASTER STORAGE SAVER
+       ========================================================================== */
+    function saveAllStorage(reason = 'Änderung gespeichert', makeSnapshot = true) {
+      // 1. Synchronous localStorage
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
+
+      // 2. Asynchronous IndexedDB fail-safe mirror
+      saveToIndexedDB(appData);
+
+      // 3. Rolling Snapshot
+      if (makeSnapshot) {
+        createSnapshot(reason);
+      }
+
+      unsavedChangesCount++;
+      checkBackupReminder();
+      updateStorageStatusUI();
+    }
+
+    function saveToLocalStorage() {
+      saveAllStorage('Automatische Speicherung', true);
+    }
+
+    /* ==========================================================================
+       APP INITIALIZATION WITH AUTO-RECOVERY
+       ========================================================================== */
+    async function initApp() {
+      let loadedSuccessfully = false;
+
+      // 1. Try LocalStorage
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
         try {
-          appData = JSON.parse(stored);
-          // ensure each subject has a shortName
-          appData.subjects.forEach(s => {
-            if (!s.shortName) {
-              const match = standardSubjects.find(def => def.name.toLowerCase() === s.name.toLowerCase());
-              s.shortName = match ? match.shortName : s.name.substring(0, 3);
-            }
-          });
+          const parsed = JSON.parse(stored);
+          if (parsed && Array.isArray(parsed.subjects)) {
+            appData = parsed;
+            loadedSuccessfully = true;
+          }
         } catch (e) {
-          console.error("Fehler beim Laden:", e);
-          appData.subjects = standardSubjects;
+          console.warn("LocalStorage Parse Error, attempting IndexedDB fallback...", e);
         }
-      } else {
-        appData.subjects = standardSubjects;
-        saveToLocalStorage();
       }
+
+      // 2. Auto-Recovery Fallback from IndexedDB if LocalStorage was empty or wiped
+      if (!loadedSuccessfully || (!appData.grades || appData.grades.length === 0)) {
+        const idbData = await loadFromIndexedDB();
+        if (idbData && idbData.subjects && idbData.grades && idbData.grades.length > 0) {
+          appData = idbData;
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
+          loadedSuccessfully = true;
+          showActionToast("🛡️ Daten wurden sicher aus dem IndexedDB-Speicher wiederhergestellt!", null, "🛡️", 4000);
+        }
+      }
+
+      // 3. Fallback from latest Snapshot if still empty
+      if (!loadedSuccessfully || (appData.grades.length === 0)) {
+        const snapshots = getSnapshots();
+        if (snapshots.length > 0 && snapshots[0].data && snapshots[0].data.grades.length > 0) {
+          appData = snapshots[0].data;
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
+          saveToIndexedDB(appData);
+        }
+      }
+
+      // Ensure subjects formatting
+      if (!appData.subjects || appData.subjects.length === 0) {
+        appData.subjects = standardSubjects;
+      }
+      appData.subjects.forEach(s => {
+        if (!s.shortName) {
+          const match = standardSubjects.find(def => def.name.toLowerCase() === s.name.toLowerCase());
+          s.shortName = match ? match.shortName : s.name.substring(0, 3);
+        }
+      });
+
+      // Save initial valid state
+      saveAllStorage('System-Start', false);
 
       // Initialize Theme
       const savedTheme = localStorage.getItem(THEME_KEY);
@@ -1475,11 +2073,67 @@
       const today = new Date().toISOString().split('T')[0];
       document.getElementById('gradeDate').value = today;
 
+      // Request and monitor Persistent Storage
+      initPersistentStorage();
+
       renderAll();
+      checkBackupReminder();
     }
 
-    function saveToLocalStorage() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
+    /* ==========================================================================
+       STORAGE STATUS UI & BACKUP REMINDERS
+       ========================================================================== */
+    function updateStorageStatusUI() {
+      const snapHeader = document.getElementById('statusSnapshotsCount');
+      const lastBackupElem = document.getElementById('statusLastBackup');
+      const unsavedHint = document.getElementById('statusUnsavedHint');
+      const persistBadge = document.getElementById('statusPersistBadge');
+
+      const snapshots = getSnapshots();
+      if (snapHeader) snapHeader.innerText = `⏱️ ${snapshots.length} Versionen`;
+
+      if (persistBadge) {
+        persistBadge.innerHTML = isPersistedStorage ? 
+          '<span class="security-badge">🟢 Geschützt</span>' : 
+          '<span class="security-badge" style="background:var(--primary-light); color:var(--primary);">🔵 Aktiv</span>';
+      }
+
+      const lastBackup = localStorage.getItem(LAST_BACKUP_KEY);
+      if (lastBackup && lastBackupElem) {
+        const d = new Date(parseInt(lastBackup));
+        lastBackupElem.innerText = d.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit' }) + ' ' + d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+        if (unsavedHint) {
+          if (unsavedChangesCount >= 3) {
+            unsavedHint.innerText = `${unsavedChangesCount} neue Änderungen`;
+            unsavedHint.style.color = 'var(--warning)';
+          } else {
+            unsavedHint.innerText = 'Stand aktuell gesichert';
+            unsavedHint.style.color = 'var(--success)';
+          }
+        }
+      }
+
+      renderSnapshotsList();
+    }
+
+    function checkBackupReminder() {
+      const banner = document.getElementById('backupReminderBanner');
+      if (!banner) return;
+
+      const lastBackup = localStorage.getItem(LAST_BACKUP_KEY);
+      const isDismissed = sessionStorage.getItem('notenpilot_reminder_dismissed');
+
+      if (!isDismissed && appData.grades.length >= 3 && (!lastBackup || unsavedChangesCount >= 5)) {
+        banner.style.display = 'flex';
+      } else {
+        banner.style.display = 'none';
+      }
+    }
+
+    function dismissBackupReminder() {
+      sessionStorage.setItem('notenpilot_reminder_dismissed', 'true');
+      const banner = document.getElementById('backupReminderBanner');
+      if (banner) banner.style.display = 'none';
     }
 
     /* ==========================================================================
@@ -1571,6 +2225,7 @@
       renderRecentGrades();
       populateSubjectDropdowns();
       checkEmptyState();
+      updateStorageStatusUI();
     }
 
     function renderHeaderAndHero() {
@@ -1819,7 +2474,7 @@
       let wExam = 0.5;
       let wTest = 0.5;
       if (ratio === '60:40') { wExam = 0.6; wTest = 0.4; }
-      else if (ratio === '67:33') { wExam = 2/3; wTest = 1/3; }
+      else if (ratio === '67:33') { wExam = 2/3; testWeight = 1/3; }
       else if (ratio === '40:60') { wExam = 0.4; wTest = 0.6; }
       else if (ratio === '100:0') { wExam = 1.0; wTest = 0.0; }
       else if (ratio === '0:100') { wExam = 0.0; wTest = 1.0; }
@@ -1901,7 +2556,7 @@
 
     function openAddGradeModal(preselectedSubjectId = null) {
       if (appData.subjects.length === 0) {
-        showToast("⚠️ Bitte lege zuerst ein Fach an!");
+        showActionToast("⚠️ Bitte lege zuerst ein Fach an!", null, "⚠️");
         openAddSubjectModal();
         return;
       }
@@ -1940,6 +2595,7 @@
     }
 
     function openSettingsModal() {
+      updateStorageStatusUI();
       openModal('modalSettings');
     }
 
@@ -1969,6 +2625,9 @@
 
       if (!subjectId || isNaN(value)) return;
 
+      const subject = appData.subjects.find(s => s.id === subjectId);
+      const subjectName = subject ? subject.name : 'Fach';
+
       const newGrade = {
         id: 'gr_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4),
         semester: appData.activeSemester,
@@ -1981,15 +2640,15 @@
       };
 
       appData.grades.push(newGrade);
-      saveToLocalStorage();
+      saveAllStorage(`Note ${value.toFixed(1).replace('.', ',')} (${subjectName}) hinzugefügt`);
       closeModal('modalAddGrade');
       renderAll();
 
       if (value <= 2.0) {
         triggerConfetti();
-        showToast("🎉 Super Note! Weiter so!");
+        showActionToast("🎉 Super Note! Sicher gespeichert!", null, "🌟");
       } else {
-        showToast("✅ Note erfolgreich gespeichert!");
+        showActionToast("✅ Note erfolgreich sicher gespeichert!", null, "✅");
       }
     }
 
@@ -2014,7 +2673,8 @@
           sub.color = color;
           sub.weightRatio = weightRatio;
         }
-        showToast(`✏️ Fach "${name}" aktualisiert!`);
+        saveAllStorage(`Fach "${name}" aktualisiert`);
+        showActionToast(`✏️ Fach "${name}" aktualisiert!`, null, "📚");
       } else {
         // Create new
         const newSub = {
@@ -2026,10 +2686,10 @@
           weightRatio
         };
         appData.subjects.push(newSub);
-        showToast(`📚 Fach "${name}" hinzugefügt!`);
+        saveAllStorage(`Fach "${name}" angelegt`);
+        showActionToast(`📚 Fach "${name}" sicher angelegt!`, null, "🎉");
       }
 
-      saveToLocalStorage();
       closeModal('modalAddSubject');
       renderAll();
       if (selectedSubjectForDetail && editId === selectedSubjectForDetail) {
@@ -2037,15 +2697,87 @@
       }
     }
 
+    /* ==========================================================================
+       SAFE DELETION WITH UNDO BUFFER & SNAPSHOT
+       ========================================================================== */
     function deleteGrade(gradeId) {
-      if (!confirm("Möchtest du diese Note wirklich löschen?")) return;
+      const grade = appData.grades.find(g => g.id === gradeId);
+      if (!grade) return;
+
+      const subject = appData.subjects.find(s => s.id === grade.subjectId);
+      const subjectName = subject ? subject.name : 'Fach';
+      const gradeVal = parseFloat(grade.value).toFixed(1).replace('.', ',');
+
+      // Create snapshot before deletion
+      createSnapshot(`Vor Löschen von Note ${gradeVal} (${subjectName})`);
+
+      // Save to undo buffer
+      undoBuffer = {
+        type: 'grade',
+        item: JSON.parse(JSON.stringify(grade))
+      };
+
       appData.grades = appData.grades.filter(g => g.id !== gradeId);
-      saveToLocalStorage();
+      saveAllStorage(`Note ${gradeVal} (${subjectName}) gelöscht`, false);
       renderAll();
+
       if (selectedSubjectForDetail) {
         openSubjectDetail(selectedSubjectForDetail);
       }
-      showToast("🗑️ Note gelöscht");
+
+      showActionToast(`🗑️ Note ${gradeVal} gelöscht`, () => {
+        if (undoBuffer && undoBuffer.type === 'grade') {
+          appData.grades.push(undoBuffer.item);
+          undoBuffer = null;
+          saveAllStorage(`Note wiederhergestellt`);
+          renderAll();
+          if (selectedSubjectForDetail) {
+            openSubjectDetail(selectedSubjectForDetail);
+          }
+          triggerConfetti();
+          showActionToast("↩️ Note erfolgreich wiederhergestellt!", null, "✨");
+        }
+      }, "🗑️", 7000);
+    }
+
+    function deleteCurrentSubject() {
+      if (!selectedSubjectForDetail) return;
+      const sub = appData.subjects.find(s => s.id === selectedSubjectForDetail);
+      if (!sub) return;
+
+      const associatedGrades = appData.grades.filter(g => g.subjectId === selectedSubjectForDetail);
+      const count = associatedGrades.length;
+
+      if (!confirm(`Möchtest du das Fach "${sub.name}" und alle zugehörigen ${count} Noten wirklich löschen? Du kannst dies direkt danach rückgängig machen.`)) return;
+
+      // Create safety snapshot
+      createSnapshot(`Vor Löschen von Fach "${sub.name}"`);
+
+      // Save undo buffer
+      undoBuffer = {
+        type: 'subject',
+        subject: JSON.parse(JSON.stringify(sub)),
+        grades: JSON.parse(JSON.stringify(associatedGrades))
+      };
+
+      appData.subjects = appData.subjects.filter(s => s.id !== selectedSubjectForDetail);
+      appData.grades = appData.grades.filter(g => g.subjectId !== selectedSubjectForDetail);
+
+      saveAllStorage(`Fach "${sub.name}" gelöscht`, false);
+      closeModal('modalSubjectDetail');
+      renderAll();
+
+      showActionToast(`🗑️ Fach "${sub.name}" gelöscht`, () => {
+        if (undoBuffer && undoBuffer.type === 'subject') {
+          appData.subjects.push(undoBuffer.subject);
+          appData.grades.push(...undoBuffer.grades);
+          undoBuffer = null;
+          saveAllStorage(`Fach wiederhergestellt`);
+          renderAll();
+          triggerConfetti();
+          showActionToast("↩️ Fach & Noten erfolgreich wiederhergestellt!", null, "✨");
+        }
+      }, "🗑️", 8000);
     }
 
     /* ==========================================================================
@@ -2139,32 +2871,158 @@
       }
     }
 
-    function deleteCurrentSubject() {
-      if (!selectedSubjectForDetail) return;
-      const sub = appData.subjects.find(s => s.id === selectedSubjectForDetail);
-      if (!confirm(`Möchtest du das Fach "${sub.name}" und alle zugehörigen Noten wirklich löschen?`)) return;
+    /* ==========================================================================
+       MULTI-CHANNEL BACKUP & RESTORE
+       ========================================================================== */
+    function exportData() {
+      const dateStr = new Date().toISOString().split('T')[0];
+      const timeStr = new Date().toTimeString().split(' ')[0].replace(/:/g, '-');
+      const filename = `NotenPilot_Backup_${dateStr}_${timeStr}.json`;
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appData, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", filename);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
 
-      appData.subjects = appData.subjects.filter(s => s.id !== selectedSubjectForDetail);
-      appData.grades = appData.grades.filter(g => g.subjectId !== selectedSubjectForDetail);
-      saveToLocalStorage();
-      closeModal('modalSubjectDetail');
-      renderAll();
-      showToast("Fach gelöscht");
+      localStorage.setItem(LAST_BACKUP_KEY, Date.now().toString());
+      dismissBackupReminder(true);
+      updateStorageStatusUI();
+      showActionToast("📥 Backup als Datei heruntergeladen!", null, "💾");
+    }
+
+    async function copyBackupToClipboard() {
+      try {
+        const jsonStr = JSON.stringify(appData, null, 2);
+        await navigator.clipboard.writeText(jsonStr);
+        localStorage.setItem(LAST_BACKUP_KEY, Date.now().toString());
+        dismissBackupReminder(true);
+        updateStorageStatusUI();
+        showActionToast("📋 Backup in die Zwischenablage kopiert!", null, "✅");
+      } catch (e) {
+        showActionToast("❌ Kopieren fehlgeschlagen: " + e.message, null, "⚠️");
+      }
+    }
+
+    async function shareBackupData() {
+      const jsonStr = JSON.stringify(appData, null, 2);
+      const dateStr = new Date().toISOString().split('T')[0];
+      const filename = `NotenPilot_Backup_${dateStr}.json`;
+
+      if (navigator.share) {
+        try {
+          const file = new File([jsonStr], filename, { type: 'application/json' });
+          if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            await navigator.share({
+              title: 'NotenPilot Datensicherung',
+              text: `NotenPilot Backup vom ${dateStr} mit ${appData.grades.length} Noten in ${appData.subjects.length} Fächern.`,
+              files: [file]
+            });
+            localStorage.setItem(LAST_BACKUP_KEY, Date.now().toString());
+            dismissBackupReminder(true);
+            updateStorageStatusUI();
+            return;
+          } else {
+            await navigator.share({
+              title: 'NotenPilot Backup',
+              text: jsonStr
+            });
+            localStorage.setItem(LAST_BACKUP_KEY, Date.now().toString());
+            dismissBackupReminder(true);
+            updateStorageStatusUI();
+            return;
+          }
+        } catch (e) {
+          if (e.name !== 'AbortError') {
+            exportData();
+          }
+        }
+      } else {
+        exportData();
+      }
+    }
+
+    async function copyGradeReportText() {
+      const gpa = calculateOverallGPA();
+      const dateStr = new Date().toLocaleDateString('de-DE');
+      let text = `📊 NotenPilot Übersicht (Stand: ${dateStr})\n`;
+      text += `Gesamtschnitt: ${gpa !== null ? gpa.toFixed(2).replace('.', ',') : '--'}\n`;
+      text += `Semester: ${appData.activeSemester}. Halbjahr\n`;
+      text += `------------------------------------\n`;
+
+      appData.subjects.forEach(s => {
+        const stats = calculateSubjectAverage(s.id);
+        const avgStr = (stats && stats.overall !== null) ? stats.overall.toFixed(1).replace('.', ',') : '--';
+        text += `${s.emoji || '📖'} ${s.name} [${s.shortName}]: Ø ${avgStr} (${stats ? stats.examCount : 0} Arbeiten, ${stats ? stats.testCount : 0} Tests)\n`;
+      });
+      text += `------------------------------------\n`;
+      text += `Erstellt mit NotenPilot 🚀`;
+
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: 'NotenPilot Notenblatt',
+            text: text
+          });
+          showActionToast("📄 Notenblatt geteilt!", null, "📤");
+          return;
+        } catch (e) {}
+      }
+
+      try {
+        await navigator.clipboard.writeText(text);
+        showActionToast("📋 Noten-Übersicht in Zwischenablage kopiert!", null, "📄");
+      } catch (e) {
+        alert(text);
+      }
+    }
+
+    function importData(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const imported = JSON.parse(e.target.result);
+          if (imported.subjects && Array.isArray(imported.subjects)) {
+            // Save safety snapshot before importing
+            createSnapshot('Vor Importieren von Backup');
+
+            appData = imported;
+            saveAllStorage('Backup erfolgreich importiert', true);
+            closeModal('modalSettings');
+            renderAll();
+            triggerConfetti();
+            showActionToast("📤 Backup erfolgreich geladen!", null, "🎉");
+          } else {
+            alert("Ungültiges Dateiformat. Die JSON-Datei enthält keine gültigen Fächerdaten.");
+          }
+        } catch (err) {
+          alert("Fehler beim Einlesen der Backup-Datei: " + err.message);
+        }
+      };
+      reader.readAsText(file);
     }
 
     /* ==========================================================================
-       SAMPLE DATA & BACKUP / RESTORE
+       SAMPLE DATA & SAFE RESET ACTIONS
        ========================================================================== */
     function resetToDefaultSubjects() {
-      if (appData.subjects.length > 0 && !confirm("Möchtest du die 13 Standard-Fächer wiederherstellen? Deine eingetragenen Noten bleiben erhalten.")) return;
+      if (appData.subjects.length > 0 && !confirm("Möchtest du die 13 Standard-Fächer wiederherstellen? Deine eingetragenen Noten bleiben erhalten. Ein Sicherheits-Wiederherstellungspunkt wird automatisch erstellt.")) return;
+      
+      createSnapshot('Vor Standard-Fächer Wiederherstellung');
       appData.subjects = JSON.parse(JSON.stringify(standardSubjects));
-      saveToLocalStorage();
+      saveAllStorage('13 Standard-Fächer wiederhergestellt', true);
       closeModal('modalSettings');
       renderAll();
-      showToast("🔄 13 Standard-Fächer wiederhergestellt!");
+      showActionToast("🔄 13 Standard-Fächer wiederhergestellt!", null, "🔄");
     }
 
     function loadSampleData() {
+      createSnapshot('Vor Laden von Beispiel-Noten');
+
       const today = new Date();
       const pastDate = (daysAgo) => {
         const d = new Date(today);
@@ -2209,7 +3067,7 @@
           { id: 'g_ph1', semester: 1, subjectId: 'sub_ph', type: 'exam', value: 2.0, topic: 'Klassenarbeit Optik & Mechanik', date: pastDate(20), weight: 1 },
           { id: 'g_ph2', semester: 1, subjectId: 'sub_ph', type: 'test', value: 1.7, topic: 'Experiment Stromkreise', date: pastDate(8), weight: 1 },
 
-          // WBS (Wirtschaft Berufs- und Studienorientierung)
+          // WBS
           { id: 'g_wbs1', semester: 1, subjectId: 'sub_wbs', type: 'exam', value: 1.7, topic: 'Klassenarbeit Markt & Konsum', date: pastDate(17), weight: 1 },
           { id: 'g_wbs2', semester: 1, subjectId: 'sub_wbs', type: 'test', value: 1.3, topic: 'Praktikumsbericht / Recherche', date: pastDate(5), weight: 1 },
 
@@ -2231,56 +3089,40 @@
         ]
       };
 
-      saveToLocalStorage();
+      saveAllStorage('Beispiel-Noten geladen', true);
       closeModal('modalSettings');
       renderAll();
       triggerConfetti();
-      showToast("✨ Beispiel-Noten für alle 13 Fächer geladen!");
+      showActionToast("✨ Beispiel-Noten für alle 13 Fächer geladen!", null, "🎉");
     }
 
     function clearAllData() {
-      if (!confirm("Bist du sicher? Es werden alle eingetragenen Noten gelöscht!")) return;
+      if (!confirm("Bist du sicher? Es werden alle eingetragenen Noten geleert. NotenPilot erstellt vorher eine automatische Sicherheitskopie (Wiederherstellungspunkt), sodass du nichts unwiderruflich verlierst!")) return;
+      
+      // Auto-save emergency snapshot before clearing
+      createSnapshot('🚨 Sicherheitskopie vor Noten-Leeren');
+
+      // Undo buffer
+      undoBuffer = {
+        type: 'all_grades',
+        grades: JSON.parse(JSON.stringify(appData.grades))
+      };
+
       appData.grades = [];
-      saveToLocalStorage();
+      saveAllStorage('Alle Noten geleert', false);
       closeModal('modalSettings');
       renderAll();
-      showToast("🗑️ Alle Noten wurden geleert.");
-    }
 
-    function exportData() {
-      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appData, null, 2));
-      const downloadAnchor = document.createElement('a');
-      downloadAnchor.setAttribute("href", dataStr);
-      downloadAnchor.setAttribute("download", `NotenPilot_Backup_${new Date().toISOString().split('T')[0]}.json`);
-      document.body.appendChild(downloadAnchor);
-      downloadAnchor.click();
-      downloadAnchor.remove();
-      showToast("📥 Backup heruntergeladen!");
-    }
-
-    function importData(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        try {
-          const imported = JSON.parse(e.target.result);
-          if (imported.subjects && Array.isArray(imported.subjects)) {
-            appData = imported;
-            saveToLocalStorage();
-            closeModal('modalSettings');
-            renderAll();
-            triggerConfetti();
-            showToast("📤 Backup erfolgreich geladen!");
-          } else {
-            alert("Ungültiges Dateiformat.");
-          }
-        } catch (err) {
-          alert("Fehler beim Einlesen der Backup-Datei.");
+      showActionToast("🗑️ Alle Noten wurden geleert.", () => {
+        if (undoBuffer && undoBuffer.type === 'all_grades') {
+          appData.grades = undoBuffer.grades;
+          undoBuffer = null;
+          saveAllStorage('Noten nach Leeren wiederhergestellt');
+          renderAll();
+          triggerConfetti();
+          showActionToast("↩️ Alle Noten erfolgreich wiederhergestellt!", null, "✨");
         }
-      };
-      reader.readAsText(file);
+      }, "🗑️", 8000);
     }
 
     /* ==========================================================================
@@ -2356,12 +3198,30 @@
     document.getElementById('btnSettings').addEventListener('click', openSettingsModal);
 
     function showToast(msg) {
+      showActionToast(msg, null, "🎉");
+    }
+
+    function showActionToast(msg, onUndoCallback = null, icon = 'ℹ️', duration = 2500) {
       const toast = document.getElementById('toast');
+      document.getElementById('toastIcon').innerText = icon;
       document.getElementById('toastMsg').innerText = msg;
+      const actionBtn = document.getElementById('toastActionBtn');
+
+      if (onUndoCallback) {
+        actionBtn.style.display = 'inline-block';
+        actionBtn.onclick = () => {
+          onUndoCallback();
+          toast.classList.remove('show');
+        };
+      } else {
+        actionBtn.style.display = 'none';
+      }
+
       toast.classList.add('show');
-      setTimeout(() => {
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
         toast.classList.remove('show');
-      }, 2500);
+      }, onUndoCallback ? 7000 : duration);
     }
 
     function formatDate(dateStr) {
